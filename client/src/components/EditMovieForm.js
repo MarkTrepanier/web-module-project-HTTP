@@ -14,6 +14,14 @@ const EditMovieForm = (props) => {
 		metascore: 0,
 		description: ""
 	});
+
+	const {id}= useParams();
+
+	useEffect(()=>{
+		axios.get(`http://localhost:5000/api/movies/${id}`)
+		.then(res=>setMovie(res.data))
+		.catch(er=>{console.log(er)})
+	})
 	
 	const handleChange = (e) => {
         setMovie({
