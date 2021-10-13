@@ -19,9 +19,9 @@ const EditMovieForm = (props) => {
 
 	useEffect(()=>{
 		axios.get(`http://localhost:5000/api/movies/${id}`)
-		.then(res=>setMovie(res.data))
-		.catch(er=>{console.log(er)})
-	})
+			.then(res=>setMovie(res.data))
+			.catch(er=>{console.log(er)})
+	},[])
 	
 	const handleChange = (e) => {
         setMovie({
@@ -32,6 +32,9 @@ const EditMovieForm = (props) => {
 
     const handleSubmit = (e) => {
 		e.preventDefault();
+		axios.put(`http://localhost:5000/api/movies/${id}`,movie)
+			.then(res=>console.log(res))
+			.catch(er=>console.log(er))
 	}
 	
 	const { title, director, genre, metascore, description } = movie;
